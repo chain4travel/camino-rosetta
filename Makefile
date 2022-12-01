@@ -38,7 +38,7 @@ run-testnet:
 		-d \
 		-v ${WORKDIR}/data:/data \
 		-e CAMINO_NETWORK=Columbus \
-		-e CAMINO_CHAIN=43113 \
+		-e CAMINO_CHAIN=501 \
 		-e CAMINO_MODE=online \
 		--name camino-testnet \
 		-p 8080:8080 \
@@ -53,7 +53,7 @@ run-testnet-offline:
 		--rm \
 		-d \
 		-e CAMINO_NETWORK=Columbus \
-		-e CAMINO_CHAIN=43113 \
+		-e CAMINO_CHAIN=501 \
 		-e CAMINO_MODE=offline \
 		--name camino-testnet-offline \
 		-p 8080:8080 \
@@ -67,8 +67,8 @@ run-mainnet:
 		--rm \
 		-d \
 		-v ${WORKDIR}/data:/data \
-		-e CAMINO_NETWORK=Mainnet \
-		-e CAMINO_CHAIN=43114 \
+		-e CAMINO_NETWORK=Camino \
+		-e CAMINO_CHAIN=500 \
 		-e CAMINO_MODE=online \
 		--name camino-mainnet \
 		-p 8080:8080 \
@@ -82,8 +82,8 @@ run-mainnet-offline:
 	docker run \
 		--rm \
 		-d \
-		-e CAMINO_NETWORK=Mainnet \
-		-e CAMINO_CHAIN=43114 \
+		-e CAMINO_NETWORK=Camino \
+		-e CAMINO_CHAIN=500 \
 		-e CAMINO_MODE=offline \
 		--name camino-mainnet-offline \
 		-p 8080:8080 \
