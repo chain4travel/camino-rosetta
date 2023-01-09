@@ -20,7 +20,7 @@ FROM golang:1.19.1 AS rosetta
 
 ARG ROSETTA_VERSION
 
-RUN git clone ttps://github.com/chain4travel/camino-rosetta.git \
+RUN git clone https://github.com/chain4travel/camino-rosetta.git \
   /go/src/github.com/chain4travel/camino-rosetta
 
 WORKDIR /go/src/github.com/chain4travel/camino-rosetta
