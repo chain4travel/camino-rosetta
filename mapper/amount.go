@@ -18,8 +18,8 @@ func Amount(value *big.Int, currency *types.Currency) *types.Amount {
 	}
 }
 
-func CamAmount(value *big.Int) *types.Amount {
-	return Amount(value, CamCurrency)
+func AvaxAmount(value *big.Int) *types.Amount {
+	return Amount(value, AvaxCurrency)
 }
 
 func Erc20Amount(

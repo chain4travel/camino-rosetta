@@ -12,9 +12,9 @@ import (
 	ethcommon "github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 
-	"github.com/chain4travel/camino-rosetta/client"
-	"github.com/chain4travel/camino-rosetta/mapper"
-	"github.com/chain4travel/caminoethvm/interfaces"
+	"github.com/ava-labs/avalanche-rosetta/client"
+	"github.com/ava-labs/avalanche-rosetta/mapper"
+	"github.com/ava-labs/coreth/interfaces"
 )
 
 // AccountService implements the /account/* endpoints
@@ -65,24 +65,24 @@ func (s AccountService) AccountBalance(
 		return nil, wrapError(errInternalError, err)
 	}
 
-	camBalance, err := s.client.BalanceAt(ctx, address, header.Number)
+	avaxBalance, err := s.client.BalanceAt(ctx, address, header.Number)
 	if err != nil {
 		return nil, wrapError(errClientError, err)
 	}
 
 	balances := []*types.Amount{}
 	if len(req.Currencies) == 0 {
-		balances = append(balances, mapper.CamAmount(camBalance))
+		balances = append(balances, mapper.AvaxAmount(avaxBalance))
 	}
 
 	for _, currency := range req.Currencies {
 		value, ok := currency.Metadata[mapper.ContractAddressMetadata]
 		if !ok {
-			if utils.Equal(currency, mapper.CamCurrency) {
-				balances = append(balances, mapper.CamAmount(camBalance))
+			if utils.Equal(currency, mapper.AvaxCurrency) {
+				balances = append(balances, mapper.AvaxAmount(avaxBalance))
 				continue
 			}
-			return nil, wrapError(errCallInvalidParams, errors.New("non-cam currencies must specify contractAddress in metadata"))
+			return nil, wrapError(errCallInvalidParams, errors.New("non-avax currencies must specify contractAddress in metadata"))
 		}
 
 		identifierAddress := req.AccountIdentifier.Address

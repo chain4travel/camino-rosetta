@@ -1,19 +1,20 @@
 <div align="center">
-  <img src="resources/camino-logo.png?raw=true">
+  <img src="resources/AvalancheLogoRed.png?raw=true">
 </div>
 
 ---
 
-# Camino Rosetta
+# Avalanche Rosetta
 
-[Rosetta][1] server implementation for [Camino][2] C-Chain.
+[Rosetta][1] server implementation for [Avalanche][2] C-Chain.
 
 ## Requirements
 
-In order to run the Camino Rosetta server you will need access to [Camino][3]
+In order to run the Avalanche Rosetta server you will need access to [Avalanche][3]
 services via RPC. More info in available APIs found [here][4].
 
-See CaminoGo documentation on how to run the chain node locally.
+See AvalancheGo documentation on how to run the chain node locally. If you don't run
+the Avalanche node yourself you might use the [hosted API provided by Ava Labs][5].
 
 ## Installation
 
@@ -32,12 +33,10 @@ Before you start running the server you need to create a configuration file:
 
 ```json
 {
-  "rpc_endpoint": "https://columbus.camino.foundation",
+  "rpc_endpoint": "https://api.avax-test.network",
   "mode": "online",
   "listen_addr": "0.0.0.0:8080",
   "genesis_block_hash" :"0x31ced5b9beb7f8782b014660da0cb18cc409f121f408186886e1ca3e8eeca96b",
-  "network_name": "Columbus",
-  "chain_id": 501
 }
 ```
 
@@ -55,8 +54,8 @@ Full configuration example:
   "mode": "online",
   "rpc_endpoint": "http://localhost:9650",
   "listen_addr": "0.0.0.0:8080",
-  "network_name": "Columbus",
-  "chain_id": 501,
+  "network_name": "Fuji",
+  "chain_id": 43113,
   "log_requests": true,
   "genesis_block_hash" :"0x31ced5b9beb7f8782b014660da0cb18cc409f121f408186886e1ca3e8eeca96b",
   "index_unknown_tokens": false,
@@ -71,10 +70,10 @@ Where:
 | Name          | Type    | Default | Description
 |---------------|---------|---------|-------------------------------------------
 | mode          | string  | `online` | Mode of operations. One of: `online`, `offline`
-| rpc_endpoint  | string  | `http://localhost:9650` | Camino RPC endpoint
+| rpc_endpoint  | string  | `http://localhost:9650` | Avalanche RPC endpoint
 | listen_addr   | string  | `http://localhost:8080` | Rosetta server listen address (host/port)
-| network_name  | string  | -       | Camino network name
-| chain_id      | integer | -       | Camino C-Chain ID
+| network_name  | string  | -       | Avalanche network name
+| chain_id      | integer | -       | Avalanche C-Chain ID
 | genesis_block_hash    | string  | -         | The block hash for the genesis block
 | index_unknown_tokens  | bool    | `false`   | Enables ingesting tokens that don't have a public symbol or decimal variable
 | ingestion_mode        | string  | `standard`| Toggles between standard and analytics ingesting modes
@@ -166,6 +165,7 @@ abigen --abi contractInfo.abi --pkg main --type ContractInfoToken --out client/c
 BSD 3-Clause
 
 [1]: https://www.rosetta-api.org/
-[2]: https://camino.foundation/
-[3]: https://github.com/chain4travel/caminogo
-[4]: https://docs.camino.foundation/developer/apis/camino-node-apis/issuing-api-calls/
+[2]: https://www.avalabs.org/
+[3]: https://github.com/ava-labs/avalanchego
+[4]: https://docs.avax.network/build/avalanchego-apis
+[5]: https://docs.avax.network/build/tools/public-api

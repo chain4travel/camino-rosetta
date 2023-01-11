@@ -1,18 +1,18 @@
 package mapper
 
 import (
-	"github.com/chain4travel/caminoethvm/params"
+	"github.com/ava-labs/coreth/params"
 	"github.com/ethereum/go-ethereum/common"
 
 	"github.com/coinbase/rosetta-sdk-go/types"
 )
 
 const (
-	CaminoChainID = 500
-	CaminoAssetID = "FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z"
+	MainnetChainID = 43114
+	MainnetAssetID = "FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z"
 
-	ColumbusChainID = 501
-	ColumbusAssetID = "U8iRqJoiJm8xZHAacmvYyZVwqQx6uDNtQeP3CQ6fcgQk3JqnK"
+	FujiChainID = 43113
+	FujiAssetID = "U8iRqJoiJm8xZHAacmvYyZVwqQx6uDNtQeP3CQ6fcgQk3JqnK"
 
 	ContractAddressMetadata  = "contractAddress"
 	IndexTransferredMetadata = "indexTransferred"
@@ -42,8 +42,8 @@ const (
 )
 
 var (
-	CaminoAP5Activation   = params.CaminoChainConfig.ApricotPhase5BlockTimestamp
-	ColumbusAP5Activation = params.ColumbusChainConfig.ApricotPhase5BlockTimestamp
+	MainnetAP5Activation = params.AvalancheMainnetChainConfig.ApricotPhase5BlockTimestamp
+	FujiAP5Activation    = params.AvalancheFujiChainConfig.ApricotPhase5BlockTimestamp
 
 	StageBootstrap = &types.SyncStatus{
 		Synced: types.Bool(false),
@@ -55,8 +55,8 @@ var (
 		Stage:  types.String("SYNCED"),
 	}
 
-	CamCurrency = &types.Currency{
-		Symbol:   "CAM",
+	AvaxCurrency = &types.Currency{
+		Symbol:   "AVAX",
 		Decimals: 18,
 	}
 

@@ -6,12 +6,12 @@ import (
 	"math/big"
 	"strings"
 
-	ethtypes "github.com/chain4travel/caminoethvm/core/types"
-	"github.com/chain4travel/caminoethvm/plugin/evm"
+	ethtypes "github.com/ava-labs/coreth/core/types"
+	"github.com/ava-labs/coreth/plugin/evm"
 	"github.com/coinbase/rosetta-sdk-go/types"
 	"github.com/ethereum/go-ethereum/common"
 
-	clientTypes "github.com/chain4travel/camino-rosetta/client"
+	clientTypes "github.com/ava-labs/avalanche-rosetta/client"
 )
 
 const (
@@ -53,7 +53,7 @@ func Transaction(
 			Type:    OpFee,
 			Status:  types.String(StatusSuccess),
 			Account: Account(&sender),
-			Amount:  CamAmount(new(big.Int).Neg(txFee)),
+			Amount:  AvaxAmount(new(big.Int).Neg(txFee)),
 		},
 		{
 			OperationIdentifier: &types.OperationIdentifier{
@@ -67,7 +67,7 @@ func Transaction(
 			Type:    OpFee,
 			Status:  types.String(StatusSuccess),
 			Account: Account(feeReceiver),
-			Amount:  CamAmount(txFee),
+			Amount:  AvaxAmount(txFee),
 		},
 	}
 
@@ -132,7 +132,7 @@ func Transaction(
 
 func crossChainTransaction(
 	rawIdx int,
-	camAssetID string,
+	avaxAssetID string,
 	tx *evm.Tx,
 ) ([]*types.Operation, error) {
 	var (
@@ -161,7 +161,7 @@ func crossChainTransaction(
 		}
 
 		for _, out := range t.Outs {
-			if out.AssetID.String() != camAssetID {
+			if out.AssetID.String() != avaxAssetID {
 				continue
 			}
 
@@ -176,7 +176,7 @@ func crossChainTransaction(
 				},
 				Amount: &types.Amount{
 					Value:    new(big.Int).Mul(new(big.Int).SetUint64(out.Amount), x2crate).String(),
-					Currency: CamCurrency,
+					Currency: AvaxCurrency,
 				},
 				Metadata: map[string]interface{}{
 					"tx":            t.ID().String(),
@@ -193,7 +193,7 @@ func crossChainTransaction(
 		}
 	case *evm.UnsignedExportTx:
 		for _, in := range t.Ins {
-			if in.AssetID.String() != camAssetID {
+			if in.AssetID.String() != avaxAssetID {
 				continue
 			}
 
@@ -208,7 +208,7 @@ func crossChainTransaction(
 				},
 				Amount: &types.Amount{
 					Value:    new(big.Int).Mul(new(big.Int).SetUint64(in.Amount), new(big.Int).Neg(x2crate)).String(),
-					Currency: CamCurrency,
+					Currency: AvaxCurrency,
 				},
 				Metadata: map[string]interface{}{
 					"tx":                t.ID().String(),
@@ -229,7 +229,7 @@ func crossChainTransaction(
 }
 
 func CrossChainTransactions(
-	camAssetID string,
+	avaxAssetID string,
 	block *ethtypes.Block,
 	ap5Activation uint64,
 ) ([]*types.Transaction, error) {
@@ -247,7 +247,7 @@ func CrossChainTransactions(
 
 	ops := []*types.Operation{}
 	for _, tx := range atomicTxs {
-		txOps, err := crossChainTransaction(len(ops), camAssetID, tx)
+		txOps, err := crossChainTransaction(len(ops), avaxAssetID, tx)
 		if err != nil {
 			return nil, err
 		}
@@ -333,7 +333,7 @@ func traceOps(trace []*clientTypes.FlatCall, startIndex int) []*types.Operation 
 				},
 				Amount: &types.Amount{
 					Value:    new(big.Int).Neg(call.Value).String(),
-					Currency: CamCurrency,
+					Currency: AvaxCurrency,
 				},
 				Metadata: metadata,
 			}
@@ -394,7 +394,7 @@ func traceOps(trace []*clientTypes.FlatCall, startIndex int) []*types.Operation 
 				},
 				Amount: &types.Amount{
 					Value:    call.Value.String(),
-					Currency: CamCurrency,
+					Currency: AvaxCurrency,
 				},
 				Metadata: metadata,
 			}
@@ -433,7 +433,7 @@ func traceOps(trace []*clientTypes.FlatCall, startIndex int) []*types.Operation 
 			},
 			Amount: &types.Amount{
 				Value:    new(big.Int).Neg(val).String(),
-				Currency: CamCurrency,
+				Currency: AvaxCurrency,
 			},
 		})
 	}

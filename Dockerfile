@@ -1,29 +1,29 @@
 # ------------------------------------------------------------------------------
-# Build camino
+# Build avalanche
 # ------------------------------------------------------------------------------
-FROM golang:1.19.1 AS camino
+FROM golang:1.19.1 AS avalanche
 
-ARG CAMINO_VERSION
+ARG AVALANCHE_VERSION
 
-RUN git clone https://github.com/chain4travel/caminogo.git \
-  /go/src/github.com/chain4travel/caminogo
+RUN git clone https://github.com/ava-labs/avalanchego.git \
+  /go/src/github.com/ava-labs/avalanchego
 
-WORKDIR /go/src/github.com/c4t/caminogo
+WORKDIR /go/src/github.com/ava-labs/avalanchego
 
-RUN git checkout $CAMINO_VERSION && \
+RUN git checkout $AVALANCHE_VERSION && \
     ./scripts/build.sh
 
 # ------------------------------------------------------------------------------
-# Build camino rosetta
+# Build avalanche rosetta
 # ------------------------------------------------------------------------------
 FROM golang:1.19.1 AS rosetta
 
 ARG ROSETTA_VERSION
 
-RUN git clone https://github.com/chain4travel/camino-rosetta.git \
-  /go/src/github.com/chain4travel/camino-rosetta
+RUN git clone https://github.com/ava-labs/avalanche-rosetta.git \
+  /go/src/github.com/ava-labs/avalanche-rosetta
 
-WORKDIR /go/src/github.com/chain4travel/camino-rosetta
+WORKDIR /go/src/github.com/ava-labs/avalanche-rosetta
 
 ENV CGO_ENABLED=1
 ENV GOARCH=amd64
@@ -48,29 +48,29 @@ RUN apt-get update -y && \
 
 WORKDIR /app
 
-# Install camino daemon
-COPY --from=camino \
-  /go/src/github.com/chain4travel/caminogo/build/caminogo \
-  /app/caminogo
+# Install avalanche daemon
+COPY --from=avalanche \
+  /go/src/github.com/ava-labs/avalanchego/build/avalanchego \
+  /app/avalanchego
 
 # Install evm plugin
-COPY --from=camino \
-  /go/src/github.com/chain4travel/caminogo/build/plugins/evm \
+COPY --from=avalanche \
+  /go/src/github.com/ava-labs/avalanchego/build/plugins/evm \
   /app/plugins/evm
 
 # Install rosetta server
 COPY --from=rosetta \
-  /go/src/github.com/chain4travel/camino-rosetta/rosetta-server \
+  /go/src/github.com/ava-labs/avalanche-rosetta/rosetta-server \
   /app/rosetta-server
 
 # Install rosetta runner
 COPY --from=rosetta \
-  /go/src/github.com/chain4travel/camino-rosetta/rosetta-runner \
+  /go/src/github.com/ava-labs/avalanche-rosetta/rosetta-runner \
   /app/rosetta-runner
 
 # Install service start script
 COPY --from=rosetta \
-  /go/src/github.com/chain4travel/camino-rosetta/docker/entrypoint.sh \
+  /go/src/github.com/ava-labs/avalanche-rosetta/docker/entrypoint.sh \
   /app/entrypoint.sh
 
 EXPOSE 9650
