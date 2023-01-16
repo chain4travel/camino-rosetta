@@ -3,7 +3,7 @@
 export CAMINO_NETWORK=${CAMINO_NETWORK:-testnet}
 export CAMINO_CHAIN=${CAMINO_CHAIN:-501}
 export CAMINO_MODE=${CAMINO_MODE:-online}
-export CAMINO_GENESIS_HASH=${CAMINO_GENESIS_HASH:-"0x31ced5b9beb7f8782b014660da0cb18cc409f121f408186886e1ca3e8eeca96b"}
+export CAMINO_GENESIS_HASH=${CAMINO_GENESIS_HASH:-"0x62e22411c311431cac7d766334106134b708629d3ed24f22e259f67fa383712b"}
 
 cat <<EOF > /app/caminogo-config.json
 {
@@ -51,7 +51,7 @@ fi
 
 exec /app/rosetta-runner \
   -mode $CAMINO_MODE \
-  -camino-bin /app/caminogo \
+  -camino-bin /app/camino-node \
   -camino-config /app/caminogo-config.json \
   -rosetta-bin /app/rosetta-server \
   -rosetta-config rosetta-config.json
