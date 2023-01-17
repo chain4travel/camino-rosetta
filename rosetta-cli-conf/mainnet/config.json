@@ -12,7 +12,6 @@
   "tip_delay": 3600,
   "log_configuration": false,
   "compression_disabled": false,
-  "memory_limit_disabled": false,
   "data_directory": "rosetta-data",
   "construction": {
     "offline_url": "http://localhost:8080",
@@ -40,7 +39,6 @@
     "interesting_accounts": "",
     "reconciliation_disabled": false,
     "balance_tracking_disabled": false,
-    "historical_balance_enabled": true,
     "coin_tracking_disabled": false,
     "results_output_file": "",
     "end_conditions": {
