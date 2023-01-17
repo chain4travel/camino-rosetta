@@ -32,7 +32,7 @@ Before you start running the server you need to create a configuration file:
 
 ```json
 {
-  "rpc_endpoint": "https://columbus.camino.network",
+  "rpc_endpoint": "http://localhost:9650",
   "mode": "online",
   "listen_addr": "0.0.0.0:8080",
   "genesis_block_hash" :"0x62e22411c311431cac7d766334106134b708629d3ed24f22e259f67fa383712b",
@@ -82,6 +82,19 @@ Where:
 | validate_erc20_whitelist  | bool | `false`  | Verifies provided ERC20 contract addresses in standard mode (node must be bootstrapped when rosetta server starts).
 
 The token whitelist only supports tokens that emit evm transfer logs for all minting (from should be 0x000---), burning (to address should be 0x0000) and transfer events are supported.  All other tokens will break cause ingestion to fail.
+
+Note: 
+Camino RPC endpoint should run camino node with the following C-Chain configuration:
+```json
+{
+  "snowman-api-enabled": false,
+  "coreth-admin-api-enabled": false,
+  "rpc-gas-cap": 2500000000,
+  "rpc-tx-fee-cap": 100,
+  "eth-apis": ["internal-public-eth","internal-public-blockchain","internal-public-transaction-pool","internal-public-tx-pool","internal-public-debug","internal-private-debug","debug-tracer","web3","public-eth","public-eth-filter","public-debug","private-debug","net"],
+  "pruning-enabled": false
+}
+```
 
 ### RPC Endpoints
 
