@@ -1,9 +1,11 @@
 {
   "network": {
     "blockchain": "Camino",
-    "network": "Columbus"
+    "network": "Columbus",
+
   },
-  "online_url": "http://localhost:8080",
+
+  "online_url": "https://rosetta.columbus.camino.network",
   "http_timeout": 500,
   "max_retries": 50,
   "retry_elapsed_time": 0,

@@ -9,10 +9,10 @@ import (
 
 const (
 	CaminoChainID = 500
-	CaminoAssetID = "FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z"
+	CaminoAssetID = "z4V4W25dvCLkv4PKqsaHA1BE1QAfs1Y86xbJeyRE5199dkDhv"
 
 	ColumbusChainID = 501
-	ColumbusAssetID = "U8iRqJoiJm8xZHAacmvYyZVwqQx6uDNtQeP3CQ6fcgQk3JqnK"
+	ColumbusAssetID = "2qD5UA8E5a3rCyVGrxWHp4pwP14d8WicgCfM9KzdyWQ6AyK3w8"
 
 	ContractAddressMetadata  = "contractAddress"
 	IndexTransferredMetadata = "indexTransferred"

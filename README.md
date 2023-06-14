@@ -35,7 +35,7 @@ Before you start running the server you need to create a configuration file:
   "rpc_endpoint": "http://localhost:9650",
   "mode": "online",
   "listen_addr": "0.0.0.0:8080",
-  "genesis_block_hash" :"0x62e22411c311431cac7d766334106134b708629d3ed24f22e259f67fa383712b",
+  "genesis_block_hash" :"0x679557638488bba2b6aaaef15be634e7a32902d7180228a660ebc6ac2bd3db37",
   "network_name": "Columbus",
   "chain_id": 501
 }
@@ -58,7 +58,7 @@ Full configuration example:
   "network_name": "Columbus",
   "chain_id": 501,
   "log_requests": true,
-  "genesis_block_hash" :"0x62e22411c311431cac7d766334106134b708629d3ed24f22e259f67fa383712b",
+  "genesis_block_hash" :"0x679557638488bba2b6aaaef15be634e7a32902d7180228a660ebc6ac2bd3db37",
   "index_unknown_tokens": false,
   "ingestion_mode" : "standard",
   "token_whitelist" : [],
