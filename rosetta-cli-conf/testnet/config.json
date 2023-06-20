@@ -3,7 +3,7 @@
       "blockchain":"Camino",
       "network":"Columbus"
    },
-   "online_url":"https://rosetta.columbus.camino.network",
+   "online_url":"http://localhost:8080",
    "http_timeout":500,
    "max_retries":50,
    "retry_elapsed_time":0,
@@ -14,7 +14,7 @@
    "compression_disabled":false,
    "data_directory":"rosetta-data",
    "construction":{
-      "offline_url":"http://localhost:8080",
+      "offline_url":"http://localhost:8090",
       "stale_depth":5,
       "broadcast_limit":5,
       "constructor_dsl_file":"./camino.ros",
@@ -24,21 +24,7 @@
          "smart_contract_transfer":10
       },
       "prefunded_accounts":[
-         {
-            "privkey":"507269766174654B65792D7A65767569676A53557A6A447269446376753338573459633661643641344E615A66797A4E7672654348393962565A4662",
-            "account_identifier":{
-               "address":"0x6e8b1abef34cbb4bbd1d7f77a6eb5b5df39ef4f2",
-               "metadata":{}
-            },
-            "curve_type":"secp256k1",
-            "currency":{
-               "symbol":"CAM",
-               "decimals":18,
-               "metadata":{
-                  
-               }
-            }
-         }
+         
 
       ]
    },

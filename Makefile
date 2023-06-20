@@ -56,8 +56,8 @@ run-testnet-offline:
 		-e CAMINO_CHAIN=501 \
 		-e CAMINO_MODE=offline \
 		--name camino-testnet-offline \
-		-p 8080:8080 \
-		-p 9650:9650 \
+		-p 8090:8080 \
+		-p 9690:9650 \
 		-it \
 		${DOCKER_TAG}
 
